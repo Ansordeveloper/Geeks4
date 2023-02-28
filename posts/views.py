@@ -38,4 +38,7 @@ def get_about(request):
 
 
 def get_contacts(request):
-    return HttpResponse("Hi")
+    context = {
+        "title": "Контакная страница",
+    }
+    return render(request, "posts/contact.html", context=context)
