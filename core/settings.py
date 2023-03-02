@@ -30,12 +30,7 @@ INSTALLED_APPS = [
 
     #apps
     'posts',
-<<<<<<< HEAD
-    'users'
-
-=======
     'users',
->>>>>>> homework_1
     #libs
 ]
 
@@ -74,8 +69,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': "geeks_db",
+        'USER': "geeks",
+        'PASSWORD': "ansor2003",
+        'HOST': "localhost",
+        'PORT': 5432,
     }
 }
 
