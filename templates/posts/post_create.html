@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-<h1>Контактная Страница</h1>
-
+<hr>Создать<hr>
 
 <a href="{% url 'index-page' %}">На главную</a>
-
 <br>
+
 <a href="{% url 'about-page' %}">Страница о нас</a>
+<br>
+
+<a href="{% url 'contacts-page' %}">Контактная Страница</a>
 
 {% endblock %}

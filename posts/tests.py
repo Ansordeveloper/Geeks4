@@ -30,7 +30,7 @@ class HelloTestCase(TestCase):
     def test_get_contacts(self):
         response = self.client.get(reverse("contacts-page"))
 
-        # self.assertTemplateUsed(response, "posts/contacts.html")
+        self.assertTemplateUsed(response, "posts/contacts.html")
         self.assertEqual(response.status_code, 200)
 
 
