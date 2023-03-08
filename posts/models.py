@@ -1,14 +1,17 @@
 from django.db import models
 
 class Post(models.Model):
-    title = models.CharField(max_length=300)
-    content = models.TextField()
-    create = models.DateTimeField(auto_now=True)
-    status = models.BooleanField(default=True)
+    title = models.CharField(max_length=300,verbose_name="Заголовок")
+    content = models.TextField(verbose_name="Содержания")
+    create = models.DateTimeField(auto_now=True,verbose_name="Дата создания")
+    status = models.BooleanField(default=True,verbose_name="Статус публикации")
 
     def __str__(self):
         return self.title
     
     class Meta:
         ordering = ("-create",)
+        verbose_name = "Пост"
+        verbose_name_plural = "Посты"
+
 

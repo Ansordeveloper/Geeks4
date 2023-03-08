@@ -3,31 +3,23 @@
 
 <h1>Это главная страница</h1>
    {% for post in posts %}
+
 <div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">{{ post.title }}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ post.create }}</h6>
       <p class="card-text">{{ post.content|truncatewords:9 }}</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+      <a href="{% url 'post-detail' post.pk %}" class="card-link">Читать полностью</a>
+      <!-- <a href="#" class="card-link">Another link</a> -->
     </div>
   </div>
 
 {% endfor %}
 <br>
 
-
-<a href="{% url 'about-page' %}">Страница о нас</a>
+<button tupe="button"><a href="{% url 'post-create'%}">Создать пост</a></button>
 <br>
-
-<a href="{% url 'contacts-page' %}">Контактная Страница</a>
 <br>
-
-<a href="{% url 'get_post' %}"> get posts </a>
-<br>
-<a href="{% url 'update_post' %}"> update posts </a>
-<br>
-<a href="{% url 'delete_post' %}"> delete posts </a>
-
+{% include 'posts/includes/links_include.html'%}
 
 {% endblock %}

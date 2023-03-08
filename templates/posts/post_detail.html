@@ -1,14 +1,27 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
 
-<hr><hr>
+    <figure class="text-center">
+        <blockquote class="blockquote">
+            <h1 class="display-6">{{ post.title }}</h1>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            {{ post.create }}
+        </figcaption>
+    </figure>
+    <p>{{ post.content }}</p>
 
-<a href="{% url 'index-page' %}">На главную</a>
-<br>
-
-<a href="{% url 'about-page' %}">Страница о нас</a>
-<br>
-
-<a href="{% url 'contacts-page' %}">Контактная Страница</a>
-
+    <br>
+    <form action="{% url 'post-delete' post.id %}" method="post">
+    {% csrf_token %}
+        <button tupe="submit">Удалить пост</button>
+    </form>
+    <br> 
+        <button tupe="submit"><a href="{% url 'post-update' post.id %}">Редактировать пост</a></button>
+    </form>
+    <br>
+    <br>
+    {% include 'posts/includes/links_include.html'%}
 {% endblock %}

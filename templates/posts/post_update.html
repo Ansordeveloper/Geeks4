@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<hr><hr>
+    <hr>Post Update<hr>
 
-<a href="{% url 'index-page' %}">На главную</a>
-<br>
-
-<a href="{% url 'about-page' %}">Страница о нас</a>
-<br>
-
-<a href="{% url 'contacts-page' %}">Контактная Страница</a>
+    <form action="" method="post">
+    {% csrf_token %}   
+    {{ form.as_p}}
+    <button tupe="submit">Обновит запись</button>
+    </form>
+    
+    {% include 'posts/includes/links_include.html'%}
 
 {% endblock %}

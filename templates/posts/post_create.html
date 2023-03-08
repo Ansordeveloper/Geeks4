@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<hr>Создать<hr>
+<hr>Post Create<hr>
 
-<a href="{% url 'index-page' %}">На главную</a>
+<form action="" method="post">
+{% csrf_token %}
+{{ form.as_p}}
+<button tupe="submit">Создать запись</button>
+</form>
 <br>
 
-<a href="{% url 'about-page' %}">Страница о нас</a>
-<br>
-
-<a href="{% url 'contacts-page' %}">Контактная Страница</a>
-
+{% include 'posts/includes/links_include.html'%}
 {% endblock %}
