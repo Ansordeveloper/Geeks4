@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from django.http import HttpResponse
+from posts.forms import CommentForm, PostForm
 
-from posts.models import Post
+from posts.models import Post, Comment
 
 from django.views import generic
 from django.urls import reverse_lazy
@@ -44,14 +45,39 @@ class PostDetailView(generic.DetailView):
     model = Post
     context_object_name = "post"
     template_name = "posts/post_detail.html"
+
+    def post(self, request, pk):
+        post = Post.objects.get(pk=pk) # ИЛИ post_id ЕСЛИ БЫ НЕ БЫЛО pk, НУЖЕН input hidden
+        form = CommentForm(request.POST)
+
+
+        # name = request.POST.get("name", None)
+        # text = request.POST.get("text", None)
+        
+        # if name and text:
+        #     comment = Comment.objects.create(name=name, text=text, post=post)
+        #     comment.save()
+
+        if form.is_valid():
+            pre_saved_comment = form.save(commit=False)
+            pre_saved_comment.post = post
+            pre_saved_comment.save()
+
+        return redirect("post-detail", pk)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CommentForm()
+        context['title'] = 'Просмотр поста'
+        return context   
+
     
-
-
 class PostCreateView(generic.CreateView):
     model = Post
     template_name = "posts/post_create.html"
-    fields = ["title", "content"]
+    form_class = PostForm
     success_url = reverse_lazy("index-page")
+    
 
 class PostUpdateView(generic.UpdateView):
     model = Post
@@ -84,21 +110,4 @@ def get_contacts(request):
     return render(request, "posts/contact.html", context=context)
 
 
-def get_post(request):
-    context = {
-        "title": "Post"
-    }
-    return render(request, "posts/post_detail.html", context=context)
-
-def update_post(request):
-    contex = {
-        "title": "Update"
-    }
-    return render(request, "posts/post_update.html", context=contex)
-
-
-def delete_post(request):
-    contex = {
-        "title": "delite"
-    }
-    return render(request, "posts/post_create.html", context=contex)
+ 
