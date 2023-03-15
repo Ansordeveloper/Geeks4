@@ -1,25 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Это главная страница</h1>
-   {% for post in posts %}
+  <h1>Это главная страница</h1>
+    {% for post in posts %}
 
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{ post.title }}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{ post.create }}</h6>
-      <p class="card-text">{{ post.content|truncatewords:9 }}</p>
-      <a href="{% url 'post-detail' post.pk %}" class="card-link">Читать полностью</a>
-      <!-- <a href="#" class="card-link">Another link</a> -->
+  <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ post.create }}</h6>
+        <p class="card-text">{{ post.content|truncatewords:9 }}</p>
+        <a href="{% url 'post-detail' post.pk %}" class="card-link">Читать полностью</a>
+        <!-- <a href="#" class="card-link">Another link</a> -->
+      </div>
     </div>
-  </div>
 
-{% endfor %}
-<br>
+  {% endfor %}
+  <br>
+  {% if user.is_authenticated %}
 
-<button tupe="button"><a href="{% url 'post-create'%}">Создать пост</a></button>
-<br>
-<br>
-{% include 'posts/includes/links_include.html'%}
+  <button tupe="button"><a href="{% url 'post-create'%}">Создать пост</a></button>
+  <br>
+  <br>
+  {% endif %}
+  {% include 'posts/includes/links_include.html' %}
 
 {% endblock %}
