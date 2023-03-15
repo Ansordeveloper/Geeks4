@@ -26,6 +26,8 @@
     </div>
     {% endfor %}
     <br>
+    {% if user.is_authenticated %}
+
     <form action="" method="post">
     {% csrf_token %}
 
@@ -57,5 +59,7 @@
     </form>
     <br>
     <br>
-    {% include 'posts/includes/links_include.html'%}
+    {% endif %}
+    
+    {% include 'posts/includes/links_include.html' %}
 {% endblock %}

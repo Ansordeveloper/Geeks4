@@ -41,6 +41,12 @@ class IndexView(generic.ListView):
     # model = Post
     template_name = "posts/index.html"
 
+    def get_context_data(self, *, object_name=None,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Главная страница'
+        return context  
+        
+
 class PostDetailView(generic.DetailView):
     model = Post
     context_object_name = "post"
