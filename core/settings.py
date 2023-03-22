@@ -32,6 +32,9 @@ INSTALLED_APPS = [
     'posts',
     'users',
     #libs
+    "rest_framework",
+    "django_filters",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
@@ -115,5 +118,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "index-page"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+AUTH_USER_MODEL = "users.CustomUser"

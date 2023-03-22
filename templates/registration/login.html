@@ -17,6 +17,7 @@
 
     <form action="{% url 'login' %}" method="post">
     {% csrf_token %}
+
     <table>
         <tr>
             <td>{{ form.username.label_tag }}</td>
@@ -27,6 +28,7 @@
             <td>{{ form.password }}</td>
     </table>
         <input type="submit" value="Войти">
+        <a class="btn btn-outline-danger" href="{% url 'password_reset' %}" role="button">Восстановить пароль</a>
         <input type="hidden" name="next" value="{{ next }}">
     </form>
 
