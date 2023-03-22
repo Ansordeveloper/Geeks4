@@ -3,6 +3,6 @@
 Добро пожаловать
 {% endblock %}
 {% block content %}
-<h1>Привет,{{ user.first_name }}!</h1>
+<h1>Привет{{ user.first_name }}!</h1>
     <p>Ваш аккаунт успешно создан! Тепер вы можете <a href="{% url 'login' %}">войти</a></p>
 {% endblock %}
